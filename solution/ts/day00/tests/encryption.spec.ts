@@ -1,5 +1,5 @@
-import {convertIv, convertKey, loadFile} from "./utils";
-import {Encryption} from "../src/encryption";
+import { convertIv, convertKey, loadFile } from "./utils";
+import { Encryption } from "../src/encryption";
 import * as fc from 'fast-check';
 
 describe('Encryption', () => {
@@ -27,5 +27,14 @@ describe('Encryption', () => {
                 ) === originalText;
             })
         );
+    });
+
+    test('decrypt an encrypted email', () => {
+        const encryptedEmail = loadFile('EncryptedEmail.txt');
+
+        const decryptedEmail = encryption.decrypt(encryptedEmail);
+
+        expect(decryptedEmail).toBeDefined();
+        console.log(`Decrypted mail : ${decryptedEmail}`);
     });
 });
