@@ -17,13 +17,13 @@ describe('SantaCommunicator', () => {
 
     test('composeMessage', () => {
         const reindeer = new Reindeer(SantaCommunicatorSpec, NORTH_POLE, 5);
-        const message = communicator.composeMessage(reindeer, numberOfDayBeforeChristmas);
+        const message = communicator.composeMessage(reindeer);
         expect(message).toEqual('Dear Dasher, please return from North Pole in 17 day(s) to be ready and rest before Christmas.');
     });
 
     test('shouldDetectOverdueReindeer', () => {
         const reindeer = new Reindeer(SantaCommunicatorSpec, NORTH_POLE, numberOfDayBeforeChristmas);
-        const overdue = communicator.isOverdue(reindeer, numberOfDayBeforeChristmas, logger);
+        const overdue = communicator.isOverdue(reindeer, logger);
 
         expect(overdue).toBeTruthy();
         expect(logger.getLog()).toEqual('Overdue for Dasher located North Pole.');
@@ -31,7 +31,7 @@ describe('SantaCommunicator', () => {
 
     test('shouldReturnFalseWhenNoOverdue', () => {
         const reindeer = new Reindeer(SantaCommunicatorSpec, NORTH_POLE, numberOfDayBeforeChristmas - numberOfDaysToRest - 1);
-        const overdue = communicator.isOverdue(reindeer, numberOfDayBeforeChristmas, logger);
+        const overdue = communicator.isOverdue(reindeer, logger);
         expect(overdue).toBeFalsy();
     });
 });
