@@ -1,5 +1,12 @@
-import {Logger} from "./logger";
+import { Logger } from "./logger";
 
+export class Reindeer {
+    constructor(
+        public readonly reindeerName: string,
+        public readonly currentLocation: string,
+        public readonly numbersOfDaysForComingBack: number) {
+    }
+}
 export class SantaCommunicator {
     private readonly numberOfDaysToRest: number;
 
@@ -7,14 +14,14 @@ export class SantaCommunicator {
         this.numberOfDaysToRest = numberOfDaysToRest;
     }
 
-    public composeMessage(reindeerName: string, currentLocation: string, numbersOfDaysForComingBack: number, numberOfDaysBeforeChristmas: number): string {
-        const daysBeforeReturn = this.daysBeforeReturn(numbersOfDaysForComingBack, numberOfDaysBeforeChristmas);
-        return `Dear ${reindeerName}, please return from ${currentLocation} in ${daysBeforeReturn} day(s) to be ready and rest before Christmas.`;
+    public composeMessage(reindeer: Reindeer, numberOfDaysBeforeChristmas: number): string {
+        const daysBeforeReturn = this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, numberOfDaysBeforeChristmas);
+        return `Dear ${reindeer.reindeerName}, please return from ${reindeer.currentLocation} in ${daysBeforeReturn} day(s) to be ready and rest before Christmas.`;
     }
 
-    public isOverdue(reindeerName: string, currentLocation: string, numbersOfDaysForComingBack: number, numberOfDaysBeforeChristmas: number, logger: Logger): boolean {
-        if (this.daysBeforeReturn(numbersOfDaysForComingBack, numberOfDaysBeforeChristmas) <= 0) {
-            logger.log(`Overdue for ${reindeerName} located ${currentLocation}.`);
+    public isOverdue(reindeer: Reindeer, numberOfDaysBeforeChristmas: number, logger: Logger): boolean {
+        if (this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, numberOfDaysBeforeChristmas) <= 0) {
+            logger.log(`Overdue for ${reindeer.reindeerName} located ${reindeer.currentLocation}.`);
             return true;
         }
         return false;
