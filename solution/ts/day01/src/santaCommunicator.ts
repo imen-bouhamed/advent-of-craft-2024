@@ -9,9 +9,11 @@ export class Reindeer {
 }
 export class SantaCommunicator {
     private readonly numberOfDaysToRest: number;
+    private readonly numberOfDayBeforeChristmas: number;
 
-    constructor(numberOfDaysToRest: number) {
+    constructor(numberOfDaysToRest: number, numberOfDayBeforeChristmas: number) {
         this.numberOfDaysToRest = numberOfDaysToRest;
+        this.numberOfDayBeforeChristmas = numberOfDayBeforeChristmas;
     }
 
     public composeMessage(reindeer: Reindeer, numberOfDaysBeforeChristmas: number): string {

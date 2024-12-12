@@ -11,7 +11,7 @@ describe('SantaCommunicator', () => {
     let logger: TestLogger;
 
     beforeEach(() => {
-        communicator = new SantaCommunicator(numberOfDaysToRest);
+        communicator = new SantaCommunicator(numberOfDaysToRest, numberOfDayBeforeChristmas);
         logger = new TestLogger();
     });
 
