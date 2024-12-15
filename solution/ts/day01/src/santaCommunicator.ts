@@ -3,27 +3,19 @@ import { Logger } from "./logger";
 import { Reindeer } from "./reindeer";
 
 export class SantaCommunicator {
-    private readonly numberOfDaysToRest: number;
-    private readonly numberOfDayBeforeChristmas: number;
     private readonly configuration: Configuration
 
-    constructor(
-        numberOfDaysToRest: number,
-        numberOfDayBeforeChristmas: number,
-        configuration: Configuration
-    ) {
-        this.numberOfDaysToRest = numberOfDaysToRest;
-        this.numberOfDayBeforeChristmas = numberOfDayBeforeChristmas;
+    constructor(configuration: Configuration) {
         this.configuration = configuration;
     }
 
     public composeMessage(reindeer: Reindeer): string {
-        const daysBeforeReturn = this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, this.numberOfDayBeforeChristmas);
+        const daysBeforeReturn = this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, this.configuration.numberOfDayBeforeChristmas);
         return `Dear ${reindeer.reindeerName}, please return from ${reindeer.currentLocation} in ${daysBeforeReturn} day(s) to be ready and rest before Christmas.`;
     }
 
     public isOverdue(reindeer: Reindeer, logger: Logger): boolean {
-        if (this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, this.numberOfDayBeforeChristmas) <= 0) {
+        if (this.daysBeforeReturn(reindeer.numbersOfDaysForComingBack, this.configuration.numberOfDayBeforeChristmas) <= 0) {
             logger.log(`Overdue for ${reindeer.reindeerName} located ${reindeer.currentLocation}.`);
             return true;
         }
@@ -31,6 +23,6 @@ export class SantaCommunicator {
     }
 
     private daysBeforeReturn(numbersOfDaysForComingBack: number, numberOfDaysBeforeChristmas: number): number {
-        return numberOfDaysBeforeChristmas - numbersOfDaysForComingBack - this.numberOfDaysToRest;
+        return numberOfDaysBeforeChristmas - numbersOfDaysForComingBack - this.configuration.numberOfDaysToRest;
     }
 }

@@ -1,7 +1,7 @@
-import { SantaCommunicator } from "../src/santaCommunicator";
-import { Reindeer } from "../src/reindeer";
-import { TestLogger } from "./doubles/testLogger";
 import { Configuration } from "../src/configuration";
+import { Reindeer } from "../src/reindeer";
+import { SantaCommunicator } from "../src/santaCommunicator";
+import { TestLogger } from "./doubles/testLogger";
 
 const SantaCommunicatorSpec = 'Dasher';
 const NORTH_POLE = 'North Pole';
@@ -15,7 +15,7 @@ describe('SantaCommunicator', () => {
 
     beforeEach(() => {
         configuration = new Configuration(numberOfDaysToRest, numberOfDayBeforeChristmas);
-        communicator = new SantaCommunicator(numberOfDaysToRest, numberOfDayBeforeChristmas, configuration);
+        communicator = new SantaCommunicator(configuration);
         logger = new TestLogger();
     });
 
