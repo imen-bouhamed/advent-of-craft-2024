@@ -1,4 +1,5 @@
-import { Reindeer, SantaCommunicator } from "../src/santaCommunicator";
+import { SantaCommunicator } from "../src/santaCommunicator";
+import { Reindeer } from "../src/reindeer";
 import { TestLogger } from "./doubles/testLogger";
 
 const SantaCommunicatorSpec = 'Dasher';

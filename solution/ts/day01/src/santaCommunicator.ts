@@ -1,12 +1,6 @@
 import { Logger } from "./logger";
+import { Reindeer } from "./reindeer";
 
-export class Reindeer {
-    constructor(
-        public readonly reindeerName: string,
-        public readonly currentLocation: string,
-        public readonly numbersOfDaysForComingBack: number) {
-    }
-}
 export class SantaCommunicator {
     private readonly numberOfDaysToRest: number;
     private readonly numberOfDayBeforeChristmas: number;
