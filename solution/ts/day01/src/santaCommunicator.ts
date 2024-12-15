@@ -1,13 +1,20 @@
+import { Configuration } from "./configuration";
 import { Logger } from "./logger";
 import { Reindeer } from "./reindeer";
 
 export class SantaCommunicator {
     private readonly numberOfDaysToRest: number;
     private readonly numberOfDayBeforeChristmas: number;
+    private readonly configuration: Configuration
 
-    constructor(numberOfDaysToRest: number, numberOfDayBeforeChristmas: number) {
+    constructor(
+        numberOfDaysToRest: number,
+        numberOfDayBeforeChristmas: number,
+        configuration: Configuration
+    ) {
         this.numberOfDaysToRest = numberOfDaysToRest;
         this.numberOfDayBeforeChristmas = numberOfDayBeforeChristmas;
+        this.configuration = configuration;
     }
 
     public composeMessage(reindeer: Reindeer): string {
